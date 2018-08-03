@@ -38,7 +38,7 @@
     <ul class="myui-from-list">
       <li class="myui-from-list-item">
         <div class="myui-code">
-          <input id="username" type="tel" minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-code-input">
+          <input id="username" type="email" minlength="11" maxlength="40" placeholder="输入邮箱" class="myui-from-code-input">
           <button id="btn1" type="button" name="button" style="width:20%;float:left;height: 2.2rem;" class="myui-from-code-button" onclick="getCode()">获取</button>
         </div>
       </li>
@@ -104,13 +104,13 @@
         });
         return;
       }
-      if(username.length != 11){
+      /*if(username.length != 11){
         api.alert({
             title: '调皮~',
-            msg: '请输入11位手机号码',
+            msg: '请输入邮箱',
         });
         return;
-      }
+      }*/
       if(username.length < 6){
         api.alert({
             title: '调皮~',
@@ -121,7 +121,7 @@
       if (yzcode != code_data) {
         api.alert({
             title: '糟糕~',
-            msg: '短信验证码不正确',
+            msg: '验证码不正确',
         });
         return;
 
@@ -192,19 +192,19 @@
       if(username == ''){
         api.alert({
             title: '调皮~',
-            msg: '请输入手机号码',
+            msg: '请输入邮箱',
         });
         onoff = true;
         return;
       }
-      if(username.length != 11){
+      /*if(username.length != 11){
         api.alert({
             title: '调皮~',
-            msg: '请输入11位手机号码',
+            msg: '请输入邮箱',
         });
         onoff = true;
         return;
-      }
+      }*/
       code_data = RndNum(6);
       var content = escape('#code#='+code_data);
       //alert(content);
@@ -243,7 +243,7 @@
     function getApicode(username,content) {
       var btn1 = $api.byId('btn1');
       api.ajax({
-          url: 'http://v.juhe.cn/sms/send?mobile='+username+'&tpl_id=699996&tpl_value='+content+'&key=86694e7ddf0774996e577327b0b2143e2 ',
+          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content',
           method: 'get'
       },function(ret, err){
               api.toast({
