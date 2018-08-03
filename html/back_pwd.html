@@ -243,7 +243,7 @@
     function getApicode(username,content) {
       var btn1 = $api.byId('btn1');
       api.ajax({
-          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content',
+          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content,
           method: 'get'
       },function(ret, err){
               api.toast({
