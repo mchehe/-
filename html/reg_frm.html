@@ -255,10 +255,10 @@
         return;
       }
       code_data = RndNum(6);
-      var content = escape('#code#='+code_data);
+      var content = escape(code_data);
       //alert(code_data);
       api.ajax({
-          url: 'http://v.juhe.cn/sms/send?mobile='+username+'&tpl_id=699996&tpl_value='+content+'&key=86694e7ddf0774996e577327b0b2143e2 ',
+          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content',
           method: 'get'
       },function(ret, err){
         // if (ret) {
