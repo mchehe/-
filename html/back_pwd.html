@@ -206,7 +206,7 @@
         return;
       }*/
       code_data = RndNum(6);
-      var content = escape('#code#='+code_data);
+      var content = escape(code_data);
       //alert(content);
       api.ajax({
           url: 'http://app.lf668.cn/login/login/yzcode.html',
