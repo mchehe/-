@@ -240,7 +240,7 @@
     function getApicode(username,content) {
       var btn1 = $api.byId('btn1');
       api.ajax({
-          url: 'http://v.juhe.cn/sms/send?mobile='+username+'&tpl_id=699996&tpl_value='+content+'&key=86694e7ddf0774996e577327b0b2143e2 ',
+          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content,
           method: 'get'
       },function(ret, err){
               api.toast({
