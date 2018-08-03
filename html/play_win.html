@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="aui-header">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+<div id="title" class="aui-title">视频播放</div>
+      <a id="play" class="aui-btn aui-pull-right" tapmode onclick="jieXi()">
+          换线
+      </a>
+  </header>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+
+    var jx_url1 = localStorage.getItem('jx_url1');
+    var jx_url2 = localStorage.getItem('jx_url2');
+
+
+    apiready = function(){
+
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+      api.addEventListener({
+          name: 'keyback'
+      }, function(ret, err) {
+        api.setScreenOrientation({
+            orientation: 'portrait_up'
+        });
+        api.closeWin();
+      });
+
+      var browser = api.require('webBrowser');
+      browser.openView({
+          url:api.pageParam.url,
+          rect: {
+              x: 0,
+              y: headerPos.h,
+              w: 'auto',
+              h: 'auto'
+          }
+      }, function(ret, err) {
+        // api.alert({
+        //     msg: JSON.stringify(ret)
+        // });
+          switch (ret.state) {
+              case 0:
+                  break;
+              case 1:
+                  break;
+              case 2:
+              api.setScreenOrientation({
+                  //orientation: 'landscape_right'
+              });
+                  break;
+              case 3:
+                  break;
+              case 4:
+                  break;
+              default:
+                  break;
+          };
+          //dataurl = getCaption(dataurl);
+          //alert(dataurl);
+          // if (ret.state==2) {
+          //   dataurl = ret.url;
+          //   state = 2;
+          // }
+          // if (ret.state==3) {
+          //   var title = $api.byId('title');
+          //   title.innerHTML = '<i class="iconfont icon-svip"></i>'+ret.title;
+          // }
+          // if (ret.state==4) {
+          //   dataurl = ret.url;
+          //   state = 2;
+          // }
+
+
+      });
+
+
+    }
+
+    function getCaption(obj){
+      var index=obj.lastIndexOf("\=");
+      obj=obj.substring(index+1,obj.length);
+      return obj;
+    }
+
+    function closeWin(){
+      api.setScreenOrientation({
+          orientation: 'portrait_up'
+      });
+      api.closeWin();
+    }
+
+    function jieXi(){
+      api.actionSheet({
+        title: '线路选择',
+        cancelTitle: '取消',
+        buttons: ['优质线路1', '优质线路2', '优质线路3', '优质线路4', '优质线路5']
+      }, function(ret, err) {
+          var index = ret.buttonIndex;
+          //alert( JSON.stringify( ret ) );
+          if (ret.buttonIndex==1) {
+            vipHuanxian(localStorage.getItem('jx_url2'));
+          }
+          if (ret.buttonIndex==2) {
+            vipHuanxian(localStorage.getItem('jx_url3'));
+          }
+          if (ret.buttonIndex==3) {
+            vipHuanxian(localStorage.getItem('jx_url4'));
+          }
+          if (ret.buttonIndex==4) {
+            vipHuanxian(localStorage.getItem('jx_url5'));
+          }
+          if (ret.buttonIndex==5) {
+            vipHuanxian(localStorage.getItem('jx_url6'));
+          }
+      });
+    }
+
+    function vipHuanxian(jiekou){
+      var user_id = localStorage.getItem('user_id');
+      if(user_id<1){
+        api.alert({
+            title: '温馨提示',
+            msg: '请先登陆后使用',
+        });
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 300
+        });
+        return;
+
+      }
+
+      var dataurl2=api.pageParam.yurl;
+      var systemType = api.systemType;
+      if (systemType == 'android') {
+        var browser = api.require('webBrowser');
+        browser.openView({
+            url: jiekou+dataurl2,
+            rect: {
+                x: 0,
+                y: 64,
+                w: 'auto',
+                h: 'auto'
+            }
+        }, function(ret, err) {
+            switch (ret.state) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
+        });
+      }else {
+        var browser = api.require('webBrowser');
+        browser.open({
+            url: jiekou+dataurl2,
+            titleBar: {
+              visible: true
+            }
+        });
+      }
+    }
+</script>
+</html>
