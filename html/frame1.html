@@ -29,12 +29,12 @@
       <!-- 游戏列表 -->
       <div class="game-list-wrap" id="gameList">
         <ul class="clearfix" id="div_list">
-          <!-- <li>
+          <li>
             <div class="game-a" onclick="tvList()">
               <img src="../image/tvzb.png" alt="">
               <p class="game-list-name">电视直播</p>
             </div>
-          </li> -->
+          </li>
         </ul>
       </div>
       <!-- 游戏列表 end-->
@@ -109,7 +109,7 @@ var slide = new auiSlide({
     var div_list = $api.byId('div_list');
     var template = $api.byId('template');
     api.ajax({
-        url: 'http://http://xxxxxx.com/api/gamezhibo.php',
+        url: 'http://app.lf668.cn/api/gamezhibo.php',
         method: 'get',
         data: {
             values: {
