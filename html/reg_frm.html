@@ -258,7 +258,7 @@
       var content = escape(code_data);
       //alert(code_data);
       api.ajax({
-          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content',
+          url: 'http://app.iyl.ooo/phpmail/sendmail.php?toemail='+username+'&code='+content,
           method: 'get'
       },function(ret, err){
         // if (ret) {
